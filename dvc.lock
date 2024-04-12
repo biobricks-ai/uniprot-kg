@@ -1,61 +1,52 @@
+---
 schema: '2.0'
 stages:
-  1-stage:
-    cmd: Rscript stages/01-stage.R
-    deps:
-    - path: stages/01-stage.R
-      md5: c468dc14527e00c339f146e1dba2bd3b
-      size: 118
-    outs:
-    - path: data/mtcars.parquet
-      md5: 77cf29accf9535522fad7db1486eff9a
-      size: 6243
-  download:
-    cmd: stages/01_download.sh
-    deps:
-    - path: checksum
-      hash: md5
-      md5: c4873befa69781f8b5de7355dd84718a.dir
-      size: 476280
-      nfiles: 1
-    - path: stages/01_download.sh
-      hash: md5
-      md5: 381e0091de2585e5a6f6c033ddea923a
-      size: 460
-    outs:
-    - path: download
-      hash: md5
-      md5: 9361da160c0d2f37fba41ec102ff2c8e.dir
-      size: 979163990986
-      nfiles: 657
-  invalidate:
-    cmd: stages/00_invalidate.sh
-    deps:
-    - path: stages/00_invalidate.sh
-      hash: md5
-      md5: 615f8d20a400c764ec4f50527f4a76de
-      size: 477
-    outs:
-    - path: checksum
-      hash: md5
-      md5: c4873befa69781f8b5de7355dd84718a.dir
-      size: 476280
-      nfiles: 1
   build:
     cmd: stages/02_build.sh
     deps:
-    - path: download
-      hash: md5
+    - hash: md5
       md5: 9361da160c0d2f37fba41ec102ff2c8e.dir
-      size: 979163990986
       nfiles: 657
-    - path: stages/02_build.sh
-      hash: md5
+      path: download
+      size: 979163990986
+    - hash: md5
       md5: be9e06c03537c9b972d7cac882b8c463
+      path: stages/02_build.sh
       size: 1517
     outs:
-    - path: brick
-      hash: md5
+    - hash: md5
       md5: 4942db9f6e6374ff5efdc939fbbf1818.dir
-      size: 1777322130952
       nfiles: 656
+      path: brick
+      size: 1777322130952
+  download:
+    cmd: stages/01_download.sh
+    deps:
+    - hash: md5
+      md5: c4873befa69781f8b5de7355dd84718a.dir
+      nfiles: 1
+      path: checksum
+      size: 476280
+    - hash: md5
+      md5: 381e0091de2585e5a6f6c033ddea923a
+      path: stages/01_download.sh
+      size: 460
+    outs:
+    - hash: md5
+      md5: 9361da160c0d2f37fba41ec102ff2c8e.dir
+      nfiles: 657
+      path: download
+      size: 979163990986
+  invalidate:
+    cmd: stages/00_invalidate.sh
+    deps:
+    - hash: md5
+      md5: 615f8d20a400c764ec4f50527f4a76de
+      path: stages/00_invalidate.sh
+      size: 477
+    outs:
+    - hash: md5
+      md5: c4873befa69781f8b5de7355dd84718a.dir
+      nfiles: 1
+      path: checksum
+      size: 476280
