@@ -1,0 +1,53 @@
+{
+  "@context": "../../context/source.context.jsonld",
+  "@type": "dcat:Dataset",
+  "@id": "https://biobricks.ai/bricks/uniprot-kg",
+  "dcterms:title": "UniProt (Universal Protein Resource) RDF",
+  "dcterms:description": "A BioBricks knowledge-graph brick built from the UniProt RDF release, a freely accessible database of protein sequence and functional information produced by the UniProt Consortium (EMBL-EBI, SIB, PIR). The stages/01_download.sh stage downloads the current-release RDF from the UniProt FTP (ftp.uniprot.org/pub/databases/uniprot/current_release/rdf/) via its RELEASE.metalink, and stages/02_build.sh builds the brick.",
+  "dcterms:license": "https://creativecommons.org/licenses/by/4.0/",
+  "dcterms:creator": "UniProt Consortium (EMBL-EBI, SIB Swiss Institute of Bioinformatics, PIR)",
+  "dcterms:publisher": "UniProt Consortium",
+  "dcterms:identifier": "https://www.uniprot.org/help/downloads",
+  "dcterms:bibliographicCitation": "The UniProt Consortium. UniProt: the Universal Protein Knowledgebase in 2023. Nucleic Acids Res. 2023;51(D1):D523-D531.",
+  "biobricks:licenseName": "CC BY 4.0",
+  "biobricks:licenseClass": "attribution",
+  "biobricks:merckCommercialUse": "conditional",
+  "biobricks:licenseEvidence": [
+    {
+      "source": "README.md (this brick)",
+      "quote": "UniProt is a freely accessible database of protein sequence and functional information.",
+      "confidence": "medium"
+    },
+    {
+      "source": "stages/01_download.sh",
+      "quote": "metalink_url=\"https://ftp.uniprot.org/pub/databases/uniprot/current_release/rdf/RELEASE.metalink\"",
+      "confidence": "high"
+    },
+    {
+      "source": "https://www.uniprot.org/help/license (UniProt's published license policy, applied since release 2018_08)",
+      "quote": "UniProt applies the Creative Commons Attribution 4.0 International (CC BY 4.0) License to all copyrightable parts of its databases. (Live page returned a JavaScript app-shell fallback to the fetcher and could not be quoted verbatim; determination based on UniProt's long-standing, widely documented CC BY 4.0 data license.)",
+      "confidence": "medium"
+    }
+  ],
+  "biobricks:reviewed": false,
+  "biobricks:reviewNotes": "Determined by the BioBricks licensing-provenance annotation agent (Claude, slice items[1608:1614]). UniProt data is downloaded from the official UniProt FTP current release. UniProt's data-license policy is Creative Commons Attribution 4.0 International (CC BY 4.0), applied to all copyrightable parts of its databases since 2018; classified attribution / commercial-use conditional (permitted with attribution). HUMAN REVIEW NEEDED: I could not retrieve a verbatim quote from https://www.uniprot.org/help/license (the page returned a JavaScript app-shell to the fetcher, and the REST/FTP LICENSE endpoints returned errors; note that the MIT LICENSE in the ebi-uniprot GitHub org covers the website software, NOT the data). A reviewer should confirm the current CC BY 4.0 statement on the live UniProt license page before treating as authoritative.",
+  "prov:wasDerivedFrom": [
+    {
+      "@type": "dcat:Dataset",
+      "@id": "https://ftp.uniprot.org/pub/databases/uniprot/current_release/rdf/",
+      "dcterms:title": "UniProt current release RDF",
+      "dcterms:license": "https://creativecommons.org/licenses/by/4.0/",
+      "dcterms:publisher": "UniProt Consortium",
+      "dcat:downloadURL": "https://ftp.uniprot.org/pub/databases/uniprot/current_release/rdf/RELEASE.metalink",
+      "dcat:landingPage": "https://www.uniprot.org/help/downloads"
+    }
+  ],
+  "prov:wasGeneratedBy": {
+    "@type": "prov:Activity",
+    "prov:wasAssociatedWith": "BioBricks licensing-provenance annotation agent (Claude, slice items[1608:1614])",
+    "prov:endedAtTime": {
+      "@type": "xsd:dateTime",
+      "@value": "2026-08-05T00:00:00Z"
+    }
+  }
+}
